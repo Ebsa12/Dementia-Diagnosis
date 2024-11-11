@@ -5,53 +5,47 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 
+# Function to train and evaluate a model
+def train_and_evaluate(model, x_train, y_train, x_test, y_test):
+    model.fit(x_train, y_train)  # Train the model
+    y_pred = model.predict(x_test)  # Predict on test set
+    accuracy = accuracy_score(y_test, y_pred)  # Calculate accuracy
+    return accuracy
+
 # Load the CSV file
 df = pd.read_csv('../AttributeSelectionData.csv')
 
 # Define features and target
-x = df.drop(columns='Diagnosis')
+X = df.drop(columns='Diagnosis')
 y = df['Diagnosis']
 
 # Split the data into training and test sets
-x_train, x_test, y_train, y_test = model_selection.train_test_split(x, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Logistic Regression model
-log_reg = LogisticRegression(max_iter=1000)
+# Initialize the models
+models = {
+    'Logistic Regression': LogisticRegression(max_iter=1000),
+    'Decision Tree': DecisionTreeClassifier()
+}
 
-# Train the Logistic Regression model
-log_reg.fit(x_train, y_train)
+# Store the results
+results = {}
 
-# Make predictions with Logistic Regression
-y_pred_log_reg = log_reg.predict(x_test)
-
-# Calculate accuracy for the Logistic Regression model
-accuracy_log_reg = accuracy_score(y_test, y_pred_log_reg)
-
-# Initialize the Decision Tree model
-dt = DecisionTreeClassifier()
-
-# Train the Decision Tree model
-dt.fit(x_train, y_train)
-
-# Make predictions with Decision Tree
-y_pred_dt = dt.predict(x_test)
-
-# Calculate accuracy for the Decision Tree model
-accuracy_dt = accuracy_score(y_test, y_pred_dt)
+# Train and evaluate each model
+for model_name, model in models.items():
+    accuracy = train_and_evaluate(model, X_train, y_train, X_test, y_test)
+    results[model_name] = accuracy
 
 # Print accuracies
-print(f'Logistic Regression Accuracy: {accuracy_log_reg:.2f}')
-print(f'Decision Tree Accuracy: {accuracy_dt:.2f}')
+for model_name, accuracy in results.items():
+    print(f'{model_name} Accuracy: {accuracy:.2f}')
 
 # Create a DataFrame for accuracies to plot
-accuracy_data = pd.DataFrame({
-    'Model': ['Logistic Regression', 'Decision Tree'],
-    'Accuracy': [accuracy_log_reg, accuracy_dt]
-})
+accuracy_data = pd.DataFrame(list(results.items()), columns=['Model', 'Accuracy'])
 
 # Plot a bar chart to visualize the difference in accuracies
 plt.figure(figsize=(10, 6))
-plt.bar(accuracy_data['Model'], accuracy_data['Accuracy'], color=['yellow', 'red'])
-plt.title('Comparison of Model Accuracy')
+plt.bar(accuracy_data['Model'], accuracy_data['Accuracy'], color=['blue', 'green'])
+plt.title('Comparison of Model Accuracies')
 plt.ylabel('Accuracy')
 plt.show()
