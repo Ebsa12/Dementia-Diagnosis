@@ -44,7 +44,7 @@ for model_name, accuracy in results.items():
 accuracy_data = pd.DataFrame(list(results.items()), columns=['Model', 'Accuracy'])
 
 # Plot a bar chart to visualize the difference in accuracies
-plt.figure(figsize=(10, 6))
+plt.figure(figsize=(10, 5))
 plt.bar(accuracy_data['Model'], accuracy_data['Accuracy'], color=['Yellow', 'Red'])
 plt.title('Comparison of Model Accuracies')
 plt.ylabel('Accuracy')
