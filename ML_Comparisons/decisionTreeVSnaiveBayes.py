@@ -55,19 +55,20 @@ f1_dt = f1_score(y_test, y_pred_dt, pos_label='Yes')
 Average_dt = (accuracy_dt + precision_dt + recall_dt + f1_dt) / 4
 Average_nb = (accuracy_nb + precision_nb + recall_nb + f1_nb) / 4
 
-# Print averages
-print(f"Average Decision Tree: {Average_dt:.3f}")
-print(f"Average Naive Bayes: {Average_nb:.3f}")
+if __name__ == "__Main__":
+    # Print averages
+    print(f"Average Decision Tree: {Average_dt:.3f}")
+    print(f"Average Naive Bayes: {Average_nb:.3f}")
 
-# Create a DataFrame for accuracies to plot
-average_data = pd.DataFrame({
-    'Model': ['Naive Bayes', 'Decision Tree'],
-    'Average': [Average_nb, Average_dt]
-})
+    # Create a DataFrame for accuracies to plot
+    average_data = pd.DataFrame({
+        'Model': ['Naive Bayes', 'Decision Tree'],
+        'Average': [Average_nb, Average_dt]
+    })
 
-# Plot a bar chart to visualize the difference in accuracies
-plt.figure(figsize=(10, 6))
-plt.bar(average_data['Model'], average_data['Average'], color=['blue', 'green'])
-plt.title('Comparison of Model Averages')
-plt.ylabel('Average')
-plt.show()
+    # Plot a bar chart to visualize the difference in accuracies
+    plt.figure(figsize=(10, 6))
+    plt.bar(average_data['Model'], average_data['Average'], color=['blue', 'green'])
+    plt.title('Comparison of Model Averages')
+    plt.ylabel('Average')
+    plt.show()

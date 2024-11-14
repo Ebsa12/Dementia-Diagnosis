@@ -63,32 +63,33 @@ average_log_reg = (accuracy_log_reg + precision_log_reg + recall_log_reg + f1_lo
 # Calculate Average recall, accuracy and precision for Random Forest
 average_rf = (accuracy_rf + precision_rf + recall_rf + f1_rf) / 4
 
-print(f'average Log Reg: {average_log_reg:.3f}')
-print(f'average random forest: {average_rf:.3f}')
+if __name__ == "__Main__":
+    print(f'average Log Reg: {average_log_reg:.3f}')
+    print(f'average random forest: {average_rf:.3f}')
 
-# # Print accuracies
-# print(f'Logistic Regression Accuracy: {accuracy_log_reg:.2f}')
-# print(f'Random Forest Accuracy: {accuracy_rf:.2f}')
+    # # Print accuracies
+    # print(f'Logistic Regression Accuracy: {accuracy_log_reg:.2f}')
+    # print(f'Random Forest Accuracy: {accuracy_rf:.2f}')
 
-# # Print precisions
-# print(f'Logistic Regression Precision: {precision_log_reg:.2f}')
-# print(f'Random Forest Precision: {precision_rf:.2f}')
+    # # Print precisions
+    # print(f'Logistic Regression Precision: {precision_log_reg:.2f}')
+    # print(f'Random Forest Precision: {precision_rf:.2f}')
 
-# # Print recalls
-# print(f'Logistic Regression Recall: {recall_log_reg:.2f}')
-# print(f'Random Forest Recall: {recall_rf:.2f}')
+    # # Print recalls
+    # print(f'Logistic Regression Recall: {recall_log_reg:.2f}')
+    # print(f'Random Forest Recall: {recall_rf:.2f}')
 
-# Create a DataFrame for accuracies to plot
-average_data = pd.DataFrame({
-    'Model': ['Logistic Regression', 'Random Forest'],
-    'Averages': [average_log_reg, average_rf]
-})
+    # Create a DataFrame for accuracies to plot
+    average_data = pd.DataFrame({
+        'Model': ['Logistic Regression', 'Random Forest'],
+        'Averages': [average_log_reg, average_rf]
+    })
 
 
-# Plot a bar chart to visualize the difference in accuracies
-# Plot a bar chart to visualize the difference in recall
-plt.figure(figsize=(10, 6))
-plt.bar(average_data['Model'], average_data['Averages'], color=['blue', 'green'])
-plt.title('Comparison of Model Machine Learning Averages')
-plt.ylabel('Averages')
-plt.show()
+    # Plot a bar chart to visualize the difference in accuracies
+    # Plot a bar chart to visualize the difference in recall
+    plt.figure(figsize=(10, 6))
+    plt.bar(average_data['Model'], average_data['Averages'], color=['blue', 'green'])
+    plt.title('Comparison of Model Machine Learning Averages')
+    plt.ylabel('Averages')
+    plt.show()
