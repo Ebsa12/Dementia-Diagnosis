@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 print(f"Average Decision Tree: {Average_dt:.3f}")
-print(f'average random forest: {average_rf:.3f}')
+print(f'Average random forest: {average_rf:.3f}')
 print(f"Average Naive Bayes: {Average_nb:.3f}")
-print(f'average Log Reg: {average_log_reg:.3f}')
+print(f'Average Log Reg: {average_log_reg:.3f}')
 
 average_data = pd.DataFrame({
     'Model': ['Logistic Regression', 'Random Forest', 'Naive Bayes', 'Decision Tree'],
