@@ -2,3 +2,5 @@ PatientID,Gender,FunctionalAssessment,FamilyHistoryAlzheimers,BehavioralProblems
 1,Female,6,no,yes,white,yes,10,no,no,yes,no,27.4
 2,Male,10,Yes,No,African American,No,4,Yes,No,No,Yes,30
 3,Male,4.5,No,No,Asian,No,5.7,Yes,Yes,Yes,No,22.4
+4,Female,9,No,No,Asian,Yes,8,Yes,No,No,Yes,30
+5,Male,0,No,No,White,No,0,No,No,No,No,28.5

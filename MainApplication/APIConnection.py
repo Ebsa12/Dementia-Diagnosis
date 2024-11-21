@@ -46,23 +46,22 @@ Appdata.loc[Appdata['BehavioralProblems'] == 'Yes', 'BehavioralProblems'] = '1'
 # Last row of csv
 newData = Appdata.tail(1)
 
-print(newData)
+# print(newData)
 
 # Define Variables
-gender = str(newData.reset_index().loc[0,'Gender'])
-functionalAssessment = str(newData.reset_index().loc[0,'FunctionalAssessment'])
-familyHistoryAlzheimers =str(newData.reset_index().loc[0,'FamilyHistoryAlzheimers'])
-mmse = str(newData.reset_index().loc[0,'MMSE'])
-behavioralProblems = str(newData.reset_index().loc[0,'BehavioralProblems'])
-ethnicity = str(newData.reset_index().loc[0,'Ethnicity'])
-diabetes  = str(newData.reset_index().loc[0,'Diabetes'])
-adl = str(newData.reset_index().loc[0,'ADL'])
-smoking = str(newData.reset_index().loc[0,'Smoking'])
-headInjury = str(newData.reset_index().loc[0,'HeadInjury'])
-memoryComplaints = str(newData.reset_index().loc[0,'MemoryComplaints'])
-forgetfulness = str(newData.reset_index().loc[0,'Forgetfulness'])
+gender = newData.reset_index().loc[0,'Gender']
+functionalAssessment = newData.reset_index().loc[0,'FunctionalAssessment']
+familyHistoryAlzheimers =newData.reset_index().loc[0,'FamilyHistoryAlzheimers']
+mmse = newData.reset_index().loc[0,'MMSE']
+behavioralProblems = newData.reset_index().loc[0,'BehavioralProblems']
+ethnicity = newData.reset_index().loc[0,'Ethnicity']
+diabetes  = newData.reset_index().loc[0,'Diabetes']
+adl = newData.reset_index().loc[0,'ADL']
+smoking = newData.reset_index().loc[0,'Smoking']
+headInjury = newData.reset_index().loc[0,'HeadInjury']
+memoryComplaints = newData.reset_index().loc[0,'MemoryComplaints']
+forgetfulness = newData.reset_index().loc[0,'Forgetfulness']
 
-# print(gender, functionalAssessment, familyHistoryAlzheimers, mmse, behavioralProblems, adl, ethnicity, diabetes, smoking, headInjury, memoryComplaints, forgetfulness)
 
 #requestURL
 url = "https://api.akkio.com/api"
@@ -94,97 +93,11 @@ params = {
     'deploy-transforms-only': deploy_transforms_only
 }
 response = requests.get(url, params=params)
+PosDiagnosis = int(response.json()[0]['Probability Diagnosis is Yes'] * 100)
+NegDiagnosis = int(response.json()[0]['Probability Diagnosis is No'] * 100)
 
 # Print the response from the server
-print(response.json()[0]['Probability Diagnosis is Yes'])
+print(PosDiagnosis,'%')
+print(NegDiagnosis,'%')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# # Import module 
-# from tkinter import *
-
-# # Create object 
-# root = Tk() 
-
-# # Adjust size 
-# root.geometry( "200x200" ) 
-
-# # Change the label text 
-# def show(): 
-# 	label.config( text = clicked.get() ) 
-
-# # Dropdown menu options 
-# options = [ 
-# 	"Monday", 
-# 	"Tuesday", 
-# 	"Wednesday", 
-# 	"Thursday", 
-# 	"Friday", 
-# 	"Saturday", 
-# 	"Sunday"
-# ] 
-
-# # datatype of menu text 
-# clicked = StringVar() 
-
-# # initial menu text 
-# clicked.set( "Monday" ) 
-
-# # Create Dropdown menu 
-# drop = OptionMenu( root , clicked , *options ) 
-# drop.pack() 
-
-# # Create button, it will change label text 
-# button = Button( root , text = "click Me" , command = show ).pack() 
-
-# # Create Label 
-# label = Label( root , text = " " ) 
-# label.pack() 
-
-# # Execute tkinter 
-# root.mainloop() 
+# text
