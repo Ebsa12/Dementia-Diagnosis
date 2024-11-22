@@ -10,7 +10,7 @@ root = Tk()
 root.title("Results Page")
 
 # Set the window size
-root.geometry("600x300")
+root.geometry("700x400")
 root.resizable(False, False)
 
 # Create and pack the main title label
