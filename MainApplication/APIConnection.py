@@ -97,7 +97,6 @@ PosDiagnosis = int(response.json()[0]['Probability Diagnosis is Yes'] * 100)
 NegDiagnosis = int(response.json()[0]['Probability Diagnosis is No'] * 100)
 
 # Print the response from the server
-print(PosDiagnosis,'%')
-print(NegDiagnosis,'%')
+print(f"You have a {PosDiagnosis}% chance of getting Dementia right now")
 
 # text
