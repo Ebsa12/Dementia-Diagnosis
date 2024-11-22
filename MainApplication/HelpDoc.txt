@@ -1,0 +1,41 @@
+1) Gender Options
+    The application currently only provides support for two genders, male or female. 
+    
+2) Ethnicity
+    Only three unique ethnic identities are supported currently. Choose the one that most
+    closely matches, or select "Other". 
+
+3) Smoking  
+    Enter whether the patient has a history of smoking.
+
+4) Family History
+    Enter whether there is any family history of Alzheimers.
+
+5) Diabetes
+    Enter whether the patient has any form of diabetes.
+
+6) Memory Complaints 
+    Enter whether the patient has any complaints about memory. This could mean long or 
+    short-term memory loss. 
+
+7) Head Injury 
+    Enter whether the patient has a history of any head injury. 
+
+8) Forgetfulness
+    Enter whether the patient has any reported forgetfulness. This could 
+    manifest as frequently forgetting to do daily tasks or appointments. 
+
+9) Behavioral Problems 
+    Any reported behavioral problems such as mood swings, anger issues 
+    or bouts of extreme sadness. 
+
+10) ADL 
+    Difficulty carrying out activities of daily living. 
+    The scale runs from 0 to 10, where 0 denotes dependence on others and 
+    10 denotes complete independence and minimal/no difficulty in daily tasks.
+
+11) MMSE 
+    The Mini Mental State Examination (MMSE) is a test administered by qualified
+    professionals to determine cognitive function in patients. It is an 11-question
+    test with a maximum score of 30. If the patient has not taken this exam 
+    and does not have a score, leave this field blank. 
