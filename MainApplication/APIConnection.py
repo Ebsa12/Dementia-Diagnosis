@@ -44,7 +44,7 @@ Appdata.loc[Appdata['BehavioralProblems'] == 'No', 'BehavioralProblems'] = '0'
 Appdata.loc[Appdata['BehavioralProblems'] == 'Yes', 'BehavioralProblems'] = '1'
 
 
-print(Appdata)
+# print(Appdata)
 
 # Define Variables
 gender = Appdata.reset_index().loc[0,'Gender']
@@ -95,6 +95,6 @@ PosDiagnosis = response.json()[0]['Probability Diagnosis is Yes'] * 100
 NegDiagnosis = response.json()[0]['Probability Diagnosis is No'] * 100
 
 # Print the response from the server
-print(f"You have a {PosDiagnosis:.3f}% chance of getting Dementia right now")
+# print(f"You have a {PosDiagnosis:.3f}% chance of getting Dementia right now")
 
 # text

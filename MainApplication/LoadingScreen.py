@@ -1,5 +1,6 @@
 from tkinter import *
 import pandas as pd
+import subprocess
 from HelpScreen import open_help_window
 
 def validate_float(P):
@@ -10,6 +11,10 @@ def validate_float(P):
         return True
     except ValueError:
         return False
+
+def launchResults():
+    subprocess.Popen(['python3', 'Test_Result.py'])
+    root.destroy()
     
 def process_prediction():
     data = {
@@ -28,8 +33,9 @@ def process_prediction():
     }
     df = pd.DataFrame(data)
     df.to_csv('AppData.csv', index=False)
-    print(df)
-    
+    print('data added to dataframe')
+    launchResults()
+
 root = Tk()
 root.geometry("700x500")
 
