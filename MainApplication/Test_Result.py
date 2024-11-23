@@ -8,7 +8,7 @@ import APIConnection
 # Function to close the application
 def close_application():
     messagebox.showinfo("Close Application", "The application will now close.")
-    root.destroy()
+    
 subprocess.Popen(['python3', 'LoadingScreen.py'])
     root.destroy()
 
