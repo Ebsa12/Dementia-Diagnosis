@@ -8,8 +8,13 @@ import APIConnection
 # Function to close the application
 def close_application():
     messagebox.showinfo("Close Application", "The application will now close.")
-    
-subprocess.Popen(['python3', 'LoadingScreen.py'])
+    root.destroy()
+
+
+# Function to simulate running the model again
+def run_model_again():
+    messagebox.showinfo("Run Model Again", "The model will run again.")
+    subprocess.Popen(['python3', 'LoadingScreen.py'])
     root.destroy()
 
 # Create the result application window
