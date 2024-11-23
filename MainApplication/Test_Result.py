@@ -7,7 +7,7 @@ import APIConnection
 
 # Function to simulate running the model again
 def run_model_again():
-    messagebox.showinfo("Run Model", "Model is running again!")
+    messagebox.showinfo("Close Application", "The Application will now close.")
     subprocess.Popen(['python3', 'LoadingScreen.py'])
     root.destroy()
 
@@ -18,6 +18,17 @@ root.title("Results Page")
         # Set the window size
 root.geometry("700x400")
 root.resizable(False, False)
+
+# Determine the risk level message based on PosDiagnosis
+if PosDiagnosis >= 75:
+    risk_message = f"You are at a high risk ({PosDiagnosis}%) of contracting Dementia."
+elif 50 <= PosDiagnosis < 75:
+    risk_message = f"You are at a moderate risk ({PosDiagnosis}%) of contracting Dementia."
+elif 25 <= PosDiagnosis < 50:
+    risk_message = f"You have a small risk ({PosDiagnosis}%) of contracting Dementia."
+else:
+    risk_message = f"You have little to no risk ({PosDiagnosis}%) of contracting Dementia."
+
     # Create and pack the main title label
 titleText = StringVar()
 titleText.set(f"You have a {PosDiagnosis}% change of contracting Dementia")
@@ -39,9 +50,9 @@ disclaimer_label = Label(
     )
 disclaimer_label.pack(pady=10)
 
-        # Create and pack the "Run Model Again" button
-run_button = Button(root, text="Run Model Again", font=("Arial", 12), fg="#4CAF50", command=run_model_again)
-run_button.pack(pady=20)
+        # Create and pack the "Close application" button
+close_button = Button(root, text="Close Application", font=("Arial", 12), fg="#4CAF50", command=Close_application)
+close_button.pack(pady=20)
 
         # Start the Tkinter event loop
 root.mainloop()
