@@ -9,7 +9,8 @@ import APIConnection
 def close_application():
     messagebox.showinfo("Close Application", "The application will now close.")
     root.destroy()
-
+subprocess.Popen(['python3', 'LoadingScreen.py'])
+    root.destroy()
 
 # Create the result application window
 root = Tk()
