@@ -51,7 +51,7 @@ disclaimer_label = Label(
 disclaimer_label.pack(pady=10)
 
         # Create and pack the "Close application" button
-close_button = Button(root, text="Close Application", font=("Arial", 12), fg="#4CAF50", command=Close_application)
+close_button = Button(root, text="Close Application", font=("Arial", 12), fg="#4CAF50", command=close_application)
 close_button.pack(pady=20)
 
         # Start the Tkinter event loop
