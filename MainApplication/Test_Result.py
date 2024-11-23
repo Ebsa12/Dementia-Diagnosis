@@ -5,15 +5,9 @@ import subprocess
 import APIConnection
 
 
-# Function to close the application
-def close_application():
-    messagebox.showinfo("Home ", "show the home page.")
-    root.destroy()
-
-
-# Function to simulate running the model again
-def run_model_again():
-    messagebox.showinfo("Run Model Again", "The model will run again.")
+# Function to close the application and redirect to home
+def go_home():
+    messagebox.showinfo("Home", "Returning to the Home Page.")
     subprocess.Popen(['python3', 'LoadingScreen.py'])
     root.destroy()
 
