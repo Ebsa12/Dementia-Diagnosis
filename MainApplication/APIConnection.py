@@ -43,24 +43,22 @@ Appdata.loc[Appdata['Forgetfulness'] == 'Yes', 'Forgetfulness'] = '1'
 Appdata.loc[Appdata['BehavioralProblems'] == 'No', 'BehavioralProblems'] = '0'
 Appdata.loc[Appdata['BehavioralProblems'] == 'Yes', 'BehavioralProblems'] = '1'
 
-# Last row of csv
-newData = Appdata.tail(1)
 
-# print(newData)
+print(Appdata)
 
 # Define Variables
-gender = newData.reset_index().loc[0,'Gender']
-functionalAssessment = newData.reset_index().loc[0,'FunctionalAssessment']
-familyHistoryAlzheimers =newData.reset_index().loc[0,'FamilyHistoryAlzheimers']
-mmse = newData.reset_index().loc[0,'MMSE']
-behavioralProblems = newData.reset_index().loc[0,'BehavioralProblems']
-ethnicity = newData.reset_index().loc[0,'Ethnicity']
-diabetes  = newData.reset_index().loc[0,'Diabetes']
-adl = newData.reset_index().loc[0,'ADL']
-smoking = newData.reset_index().loc[0,'Smoking']
-headInjury = newData.reset_index().loc[0,'HeadInjury']
-memoryComplaints = newData.reset_index().loc[0,'MemoryComplaints']
-forgetfulness = newData.reset_index().loc[0,'Forgetfulness']
+gender = Appdata.reset_index().loc[0,'Gender']
+functionalAssessment = Appdata.reset_index().loc[0,'FunctionalAssessment']
+familyHistoryAlzheimers =Appdata.reset_index().loc[0,'FamilyHistoryAlzheimers']
+mmse = Appdata.reset_index().loc[0,'MMSE']
+behavioralProblems = Appdata.reset_index().loc[0,'BehavioralProblems']
+ethnicity = Appdata.reset_index().loc[0,'Ethnicity']
+diabetes  = Appdata.reset_index().loc[0,'Diabetes']
+adl = Appdata.reset_index().loc[0,'ADL']
+smoking = Appdata.reset_index().loc[0,'Smoking']
+headInjury = Appdata.reset_index().loc[0,'HeadInjury']
+memoryComplaints = Appdata.reset_index().loc[0,'MemoryComplaints']
+forgetfulness = Appdata.reset_index().loc[0,'Forgetfulness']
 
 
 #requestURL
@@ -93,10 +91,10 @@ params = {
     'deploy-transforms-only': deploy_transforms_only
 }
 response = requests.get(url, params=params)
-PosDiagnosis = int(response.json()[0]['Probability Diagnosis is Yes'] * 100)
-NegDiagnosis = int(response.json()[0]['Probability Diagnosis is No'] * 100)
+PosDiagnosis = response.json()[0]['Probability Diagnosis is Yes'] * 100
+NegDiagnosis = response.json()[0]['Probability Diagnosis is No'] * 100
 
 # Print the response from the server
-print(f"You have a {PosDiagnosis}% chance of getting Dementia right now")
+print(f"You have a {PosDiagnosis:.3f}% chance of getting Dementia right now")
 
 # text

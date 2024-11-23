@@ -1,5 +1,8 @@
 from tkinter import *
 from tkinter import messagebox
+from APIConnection import PosDiagnosis
+import APIConnection
+
 
 # Function to simulate running the model again
 def run_model_again():
@@ -14,7 +17,9 @@ root.geometry("700x400")
 root.resizable(False, False)
 
 # Create and pack the main title label
-title_label = Label(root, text="You are at risk of Dementia", font=("Arial", 16), fg="#333")
+titleText = StringVar()
+titleText.set(f"You have a {PosDiagnosis}% change of contracting Dementia")
+title_label = Label(root, textvariable=titleText, font=("Arial", 16), fg="lightgreen")
 title_label.pack(pady=20)
 
 # Create and pack the disclaimer label
@@ -33,7 +38,7 @@ disclaimer_label = Label(
 disclaimer_label.pack(pady=10)
 
 # Create and pack the "Run Model Again" button
-run_button = Button(root, text="Run Model Again", font=("Arial", 12), bg="#4CAF50", fg="white", command=run_model_again)
+run_button = Button(root, text="Run Model Again", font=("Arial", 12), fg="#4CAF50", command=run_model_again)
 run_button.pack(pady=20)
 
 # Start the Tkinter event loop

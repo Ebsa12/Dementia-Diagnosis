@@ -1,7 +1,2 @@
-Gender,FunctionalAssessment,FamilyHistoryAlzheimers,BehavioralProblems,Ethnicity,Diabetes,ADL,Smoking,HeadInjury,MemoryComplaints,Forgetfulness,MMSE
-Female,6.0,no,yes,white,yes,10.0,no,no,yes,no,27.4
-Male,10.0,Yes,No,African American,No,4.0,Yes,No,No,Yes,30.0
-Male,4.5,No,No,Asian,No,5.7,Yes,Yes,Yes,No,22.4
-Female,9.0,No,No,Asian,Yes,8.0,Yes,No,No,Yes,30.0
-Male,0.0,No,No,White,No,0.0,No,No,No,No,28.5
-Female,10,No,Yes,Asian,No,8.7,Yes,Yes,Yes,No,26.5
+Gender,Ethnicity,Smoking,FamilyHistoryAlzheimers,Diabetes,MemoryComplaints,HeadInjury,Forgetfulness,BehavioralProblems,ADL,MMSE,FunctionalAssessment
+Male,Other,Yes,Yes,No,Yes,Yes,Yes,No,6.2,12.7,3.2
