@@ -18,7 +18,7 @@ root.geometry("700x400")
 root.resizable(False, False)
 
 # Ensure PosDiagnosis is converted to an integer
-PosDiagnosis = int(float(PosDiagnosis))  # Convert to float first, then to int
+PosDiagnosis = int(PosDiagnosis)  # Directly cast to integer to remove decimals
 
 # Determine the risk level message based on PosDiagnosis
 if PosDiagnosis >= 75:
