@@ -1,0 +1,2 @@
+Gender,Ethnicity,Smoking,FamilyHistoryAlzheimers,Diabetes,MemoryComplaints,HeadInjury,Forgetfulness,BehavioralProblems,ADL,MMSE,FunctionalAssessment
+select,select,select,select,select,select,select,select,select,4,12,5

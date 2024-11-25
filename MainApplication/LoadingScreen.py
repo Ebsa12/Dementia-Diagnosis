@@ -38,7 +38,6 @@ def process_prediction():
 
 root = Tk()
 root.geometry("700x500")
-
 vcmd = (root.register(validate_float), '%P')
 
 
