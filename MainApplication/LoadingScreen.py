@@ -1,4 +1,6 @@
 from tkinter import *
+import tkinter.ttk
+from ttkthemes import ThemedStyle
 import pandas as pd
 import subprocess
 from HelpScreen import open_help_window
@@ -38,6 +40,8 @@ def process_prediction():
 
 root = Tk()
 root.geometry("700x500")
+style = ThemedStyle(root)
+style.set_theme("scidgrey")
 
 vcmd = (root.register(validate_float), '%P')
 
@@ -173,7 +177,7 @@ faLabel.grid(row=7, column=2)
 functionalAssessmentText = Entry(root, validate='key', validatecommand=vcmd)
 functionalAssessmentText.grid(row=8, column=2)
 
-submissionButton = Button(root, text="Process Prediction", command=process_prediction, bg="green", activebackground="white")
+submissionButton = Button(root, text="Process Prediction", command=process_prediction, bg="white", activebackground="white")
 submissionButton.grid(row=9, column=1)
 
 helpButton = Button(root, text="Help", command=open_help_window)
