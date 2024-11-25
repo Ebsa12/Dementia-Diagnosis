@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 import subprocess
-from APIConnection import PosDiagnosis
+from APIConnection import PosDiagnosis  # Ensure this returns a valid numeric value
 
 # Function to close the application and redirect to home
 def go_home():
@@ -17,8 +17,8 @@ root.title("Results Page")
 root.geometry("700x400")
 root.resizable(False, False)
 
-# Convert PosDiagnosis to an integer to remove decimals
-PosDiagnosis = int(PosDiagnosis)
+# Ensure PosDiagnosis is converted to an integer
+PosDiagnosis = int(float(PosDiagnosis))  # Convert to float first, then to int
 
 # Determine the risk level message based on PosDiagnosis
 if PosDiagnosis >= 75:
