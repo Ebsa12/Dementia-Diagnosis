@@ -21,13 +21,13 @@ root.resizable(False, False)
 
 # Determine the risk level message based on PosDiagnosis
 if PosDiagnosis >= 75:
-    risk_message = f"You are at a high risk ({PosDiagnosis:.1f}%) of contracting Dementia."
+    risk_message = f"You are at a high risk ({int(PosDiagnosis)}%) of contracting Dementia."
 elif 50 <= PosDiagnosis < 75:
-    risk_message = f"You are at a moderate risk ({PosDiagnosis:.1f}%) of contracting Dementia."
+    risk_message = f"You are at a moderate risk ({int(PosDiagnosis)}%) of contracting Dementia."
 elif 25 <= PosDiagnosis < 50:
-    risk_message = f"You have a small risk ({PosDiagnosis:.1f}%) of contracting Dementia."
+    risk_message = f"You have a small risk ({int(PosDiagnosis)}%) of contracting Dementia."
 else:
-    risk_message = f"You have little to no risk ({PosDiagnosis:.1f}%) of contracting Dementia."
+    risk_message = f"You have little to no risk ({int(PosDiagnosis)}%) of contracting Dementia."
 
 # Create and pack the main title label
 titleText = StringVar()
