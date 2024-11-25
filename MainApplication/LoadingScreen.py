@@ -3,20 +3,6 @@ from tkinter import messagebox
 import subprocess
 from APIConnection import PosDiagnosis  # Ensure this returns a valid numeric value
 
-# Debugging: Print the original value of PosDiagnosis
-print(f"Original PosDiagnosis value: {PosDiagnosis}")
-
-# Force PosDiagnosis to an integer to ensure no decimals
-try:
-    PosDiagnosis = int(float(PosDiagnosis))  # Handles both string and float inputs
-except ValueError:
-    # Handle the case where PosDiagnosis is invalid
-    print("Error: PosDiagnosis is not a valid number.")
-    PosDiagnosis = 0  # Default to 0 if invalid
-
-# Debugging: Print the converted value of PosDiagnosis
-print(f"Converted PosDiagnosis value: {PosDiagnosis}")
-
 # Function to close the application and redirect to home
 def go_home():
     messagebox.showinfo("Home", "Returning to the Home Page.")
@@ -30,6 +16,9 @@ root.title("Results Page")
 # Set the window size
 root.geometry("700x400")
 root.resizable(False, False)
+
+# Ensure PosDiagnosis is converted to an integer
+PosDiagnosis = int(PosDiagnosis)  # Directly cast to integer to remove decimals
 
 # Determine the risk level message based on PosDiagnosis
 if PosDiagnosis >= 75:
