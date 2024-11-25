@@ -1,183 +1,70 @@
 from tkinter import *
-import pandas as pd
+from tkinter import messagebox
 import subprocess
-from HelpScreen import open_help_window
+from APIConnection import PosDiagnosis  # Ensure this returns a valid numeric value
 
-def validate_float(P):
-    if P == "":
-        return True
-    try:
-        float(P)
-        return True
-    except ValueError:
-        return False
+# Debugging: Print the original value of PosDiagnosis
+print(f"Original PosDiagnosis value: {PosDiagnosis}")
 
-def launchResults():
-    subprocess.Popen(['python3', 'Test_Result.py'])
+# Force PosDiagnosis to an integer to ensure no decimals
+try:
+    PosDiagnosis = int(float(PosDiagnosis))  # Handles both string and float inputs
+except ValueError:
+    # Handle the case where PosDiagnosis is invalid
+    print("Error: PosDiagnosis is not a valid number.")
+    PosDiagnosis = 0  # Default to 0 if invalid
+
+# Debugging: Print the converted value of PosDiagnosis
+print(f"Converted PosDiagnosis value: {PosDiagnosis}")
+
+# Function to close the application and redirect to home
+def go_home():
+    messagebox.showinfo("Home", "Returning to the Home Page.")
+    subprocess.Popen(['python3', 'LoadingScreen.py'])
     root.destroy()
-    
-def process_prediction():
-    data = {
-        'Gender': [genderOptions.get()],
-        'Ethnicity': [ethnicityOptions.get()],
-        'Smoking': [smokingOptions.get()],
-        'FamilyHistoryAlzheimers': [historyOptions.get()],
-        'Diabetes': [diabetesOptions.get()],
-        'MemoryComplaints': [memoryOptions.get()],
-        'HeadInjury': [headInjuryOptions.get()],
-        'Forgetfulness': [forgetfulnessOptions.get()],
-        'BehavioralProblems': [behaviorOptions.get()],
-        'ADL': [adlText.get()],
-        'MMSE': [mmseText.get()],
-        'FunctionalAssessment': [functionalAssessmentText.get()]
-    }
-    df = pd.DataFrame(data)
-    df.to_csv('AppData.csv', index=False)
-    print('data added to dataframe')
-    launchResults()
 
+# Create the result application window
 root = Tk()
-root.geometry("700x500")
+root.title("Results Page")
 
-vcmd = (root.register(validate_float), '%P')
+# Set the window size
+root.geometry("700x400")
+root.resizable(False, False)
 
+# Determine the risk level message based on PosDiagnosis
+if PosDiagnosis >= 75:
+    risk_message = f"You are at a high risk ({PosDiagnosis}%) of contracting Dementia."
+elif 50 <= PosDiagnosis < 75:
+    risk_message = f"You are at a moderate risk ({PosDiagnosis}%) of contracting Dementia."
+elif 25 <= PosDiagnosis < 50:
+    risk_message = f"You have a small risk ({PosDiagnosis}%) of contracting Dementia."
+else:
+    risk_message = f"You have little to no risk ({PosDiagnosis}%) of contracting Dementia."
 
+# Create and pack the main title label
 titleText = StringVar()
-titleText.set("Dementia Diagnosis Prediction")
-titleTextLabel = Label(textvariable=titleText, fg="white", font=("Arial", 20, "bold"))
-titleTextLabel.grid(row=0, column=1)
+titleText.set(risk_message)
+title_label = Label(root, textvariable=titleText, font=("Arial", 16), fg="lightgreen")
+title_label.pack(pady=20)
 
+# Create and pack the disclaimer label
+disclaimer_label = Label(
+    root,
+    text=(
+        "Disclaimer: This is not a diagnosis of Dementia.\n"
+        "While the application has indicated you may be at\n"
+        "risk of Dementia, do not seek any form of treatment\n"
+        "until consulting a doctor or medical professional."
+    ),
+    font=("Arial", 10),
+    fg="#666",
+    justify="center",
+)
+disclaimer_label.pack(pady=10)
 
-genderText = StringVar()
-genderText.set("Gender")
-genderTextLabel = Label(textvariable=genderText, fg="lightgreen", font=("Arial", 12))
-genderTextLabel.grid(row=1, column=0)
+# Create and pack the "Home" button
+home_button = Button(root, text="Home", font=("Arial", 12), fg="#4CAF50", command=go_home)
+home_button.pack(pady=20)
 
-genderOptions = StringVar()
-gender = OptionMenu(root, genderOptions, 'Male', 'Female')
-genderOptions.set("select")
-gender.grid(row=2, column=0, padx=5, pady=5)
-
-
-ethnicityText = StringVar()
-ethnicityText.set("Ethnicity")
-ethnicityTextLabel = Label(textvariable=ethnicityText, fg="lightgreen", font=("Arial", 12))
-ethnicityTextLabel.grid(row=1, column= 1)
-
-ethnicityOptions = StringVar()
-ethnicity = OptionMenu(root, ethnicityOptions, 'White', 'African American', 'Asian', 'Other')
-ethnicityOptions.set("select")
-ethnicity.grid(row=2, column=1, padx=5, pady=5)
-
-
-smokingText = StringVar()
-smokingText.set("History of Smoking")
-smokingTextLabel = Label(textvariable=smokingText, fg="lightgreen", font=("Arial", 12))
-smokingTextLabel.grid(row=1, column= 2)
-
-smokingOptions = StringVar()
-smoking = OptionMenu(root, smokingOptions, 'No', 'Yes')
-smokingOptions.set("select")
-smoking.grid(row=2, column=2, padx=5, pady=5)
-
-
-historyText = StringVar()
-historyText.set("Family History")
-historyTextLabel = Label(textvariable=historyText, fg="lightgreen", font=("Arial", 12))
-historyTextLabel.grid(row=3, column= 0)
-
-historyOptions = StringVar()
-history = OptionMenu(root, historyOptions, 'No', 'Yes')
-historyOptions.set("select")
-history.grid(row=4, column=0, padx=5, pady=5)
-
-
-diabetesText = StringVar()
-diabetesText.set("Diabetic")
-diabetesTextLabel = Label(textvariable=diabetesText, fg="lightgreen", font=("Arial", 12))
-diabetesTextLabel.grid(row=3, column= 1)
-
-diabetesOptions = StringVar()
-diabetes = OptionMenu(root, diabetesOptions, 'No', 'Yes')
-diabetesOptions.set("select")
-diabetes.grid(row=4, column=1, padx=5, pady=5)
-
-
-memoryText = StringVar()
-memoryText.set("Memory Issues")
-memoryTextLabel = Label(textvariable=memoryText, fg="lightgreen", font=("Arial", 12))
-memoryTextLabel.grid(row=3, column= 2)
-
-memoryOptions = StringVar()
-memory = OptionMenu(root, memoryOptions, 'No', 'Yes')
-memoryOptions.set("select")
-memory.grid(row=4, column=2, padx=5, pady=5)
-
-
-hiText = StringVar()
-hiText.set("Head Injury(s)")
-hiTextLabel = Label(textvariable=hiText, fg="lightgreen", font=("Arial", 12))
-hiTextLabel.grid(row=5, column= 0)
-
-headInjuryOptions = StringVar()
-headInjury = OptionMenu(root, headInjuryOptions, 'No', 'Yes')
-headInjuryOptions.set("select")
-headInjury.grid(row=6, column=0, padx=5, pady=5)
-
-
-forgetfulText = StringVar()
-forgetfulText.set("Forgetful")
-forgetfulTextLabel = Label(textvariable=forgetfulText, fg="lightgreen", font=("Arial", 12))
-forgetfulTextLabel.grid(row=5, column= 1)
-
-forgetfulnessOptions = StringVar()
-forgetfulness = OptionMenu(root, forgetfulnessOptions, 'No', 'Yes')
-forgetfulnessOptions.set("select")
-forgetfulness.grid(row=6, column=1, padx=5, pady=5)
-
-
-behaveText = StringVar()
-behaveText.set("Behavior Problems")
-behaveTextLabel = Label(textvariable=behaveText, fg="lightgreen", font=("Arial", 12))
-behaveTextLabel.grid(row=5, column=2)
-
-behaviorOptions = StringVar()
-behavioralProblems = OptionMenu(root, behaviorOptions, 'No', 'Yes')
-behaviorOptions.set("select")
-behavioralProblems.grid(row=6, column=2, padx=5, pady=5)
-
-
-adlLabelText = StringVar()
-adlLabelText.set("ADL Score")
-adlLabel = Label(textvariable=adlLabelText, font=("Arial", 12), fg="lightgreen")
-adlLabel.grid(row=7, column=0)
-
-adlText = Entry(root, validate='key', validatecommand=vcmd)
-adlText.grid(row=8, column=0, padx=5, pady=5)
-
-
-mmseLabelText = StringVar()
-mmseLabelText.set("MMSE Score")
-mmseLabel = Label(textvariable=mmseLabelText, font=("Arial", 12), fg="lightgreen")
-mmseLabel.grid(row=7, column=1)
-
-mmseText = Entry(root, validate='key', validatecommand=vcmd)
-mmseText.grid(row=8, column=1)
-
-
-faLabelText = StringVar()
-faLabelText.set("Functional Assessment Score")
-faLabel = Label(textvariable=faLabelText, font=("Arial", 12), fg="lightgreen")
-faLabel.grid(row=7, column=2)
-
-functionalAssessmentText = Entry(root, validate='key', validatecommand=vcmd)
-functionalAssessmentText.grid(row=8, column=2)
-
-submissionButton = Button(root, text="Process Prediction", command=process_prediction, bg="green", activebackground="white")
-submissionButton.grid(row=9, column=1)
-
-helpButton = Button(root, text="Help", command=open_help_window)
-helpButton.grid(row=11, column=2)
-
+# Start the Tkinter event loop
 root.mainloop()
-
