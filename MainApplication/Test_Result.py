@@ -1,7 +1,9 @@
 from tkinter import *
 from tkinter import messagebox
+from APIConnection import PosDiagnosis
 import subprocess
-from APIConnection import PosDiagnosis  # Ensure this returns a valid numeric value
+import APIConnection
+
 
 # Function to close the application and redirect to home
 def go_home():
@@ -17,18 +19,15 @@ root.title("Results Page")
 root.geometry("700x400")
 root.resizable(False, False)
 
-# Ensure PosDiagnosis is converted to an integer
-PosDiagnosis = int(PosDiagnosis)  # Directly cast to integer to remove decimals
-
 # Determine the risk level message based on PosDiagnosis
 if PosDiagnosis >= 75:
-    risk_message = f"You are at a high risk ({PosDiagnosis}%) of contracting Dementia."
+    risk_message = f"You are at a high risk ({PosDiagnosis:.1f}%) of contracting Dementia."
 elif 50 <= PosDiagnosis < 75:
-    risk_message = f"You are at a moderate risk ({PosDiagnosis}%) of contracting Dementia."
+    risk_message = f"You are at a moderate risk ({PosDiagnosis:.1f}%) of contracting Dementia."
 elif 25 <= PosDiagnosis < 50:
-    risk_message = f"You have a small risk ({PosDiagnosis}%) of contracting Dementia."
+    risk_message = f"You have a small risk ({PosDiagnosis:.1f}%) of contracting Dementia."
 else:
-    risk_message = f"You have little to no risk ({PosDiagnosis}%) of contracting Dementia."
+    risk_message = f"You have little to no risk ({PosDiagnosis:.1f}%) of contracting Dementia."
 
 # Create and pack the main title label
 titleText = StringVar()
