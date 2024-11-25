@@ -1,7 +1,9 @@
 from tkinter import *
 from tkinter import messagebox
-import subprocess
 from APIConnection import PosDiagnosis
+import subprocess
+import APIConnection
+
 
 # Function to close the application and redirect to home
 def go_home():
