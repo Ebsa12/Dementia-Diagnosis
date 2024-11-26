@@ -14,6 +14,24 @@ def validate_float(P):
     except ValueError:
         return False
 
+def validate_adl(P):
+    if P == "":
+        return True
+    try:
+        value = float(P)
+        return 0 <= value <= 10
+    except ValueError:
+        return False
+
+def validate_mmse(P):
+    if P == "":
+        return True
+    try:
+        value = float(P)
+        return 0 <= value <= 30
+    except ValueError:
+        return False
+
 def launchResults():
     subprocess.Popen(['python3', 'Test_Result.py'])
     root.destroy()
@@ -41,15 +59,16 @@ def process_prediction():
 root = Tk()
 root.geometry("700x500")
 
-vcmd = (root.register(validate_float), '%P')
-
+vcmd_float = (root.register(validate_float), '%P')
+vcmd_adl = (root.register(validate_adl), '%P')
+vcmd_mmse = (root.register(validate_mmse), '%P')
 
 titleText = StringVar()
 titleText.set("Dementia Diagnosis Prediction")
 titleTextLabel = Label(textvariable=titleText, fg="white", font=("Arial", 20, "bold"))
 titleTextLabel.grid(row=0, column=1)
 
-
+# Gender
 genderText = StringVar()
 genderText.set("Gender")
 genderTextLabel = Label(textvariable=genderText, fg="lightgreen", font=("Arial", 12))
@@ -60,84 +79,84 @@ gender = OptionMenu(root, genderOptions, 'Male', 'Female')
 genderOptions.set("select")
 gender.grid(row=2, column=0, padx=5, pady=5)
 
-
+# Ethnicity
 ethnicityText = StringVar()
 ethnicityText.set("Ethnicity")
 ethnicityTextLabel = Label(textvariable=ethnicityText, fg="lightgreen", font=("Arial", 12))
-ethnicityTextLabel.grid(row=1, column= 1)
+ethnicityTextLabel.grid(row=1, column=1)
 
 ethnicityOptions = StringVar()
 ethnicity = OptionMenu(root, ethnicityOptions, 'White', 'African American', 'Asian', 'Other')
 ethnicityOptions.set("select")
 ethnicity.grid(row=2, column=1, padx=5, pady=5)
 
-
+# Smoking
 smokingText = StringVar()
 smokingText.set("History of Smoking")
 smokingTextLabel = Label(textvariable=smokingText, fg="lightgreen", font=("Arial", 12))
-smokingTextLabel.grid(row=1, column= 2)
+smokingTextLabel.grid(row=1, column=2)
 
 smokingOptions = StringVar()
 smoking = OptionMenu(root, smokingOptions, 'No', 'Yes')
 smokingOptions.set("select")
 smoking.grid(row=2, column=2, padx=5, pady=5)
 
-
+# Family History
 historyText = StringVar()
 historyText.set("Family History")
 historyTextLabel = Label(textvariable=historyText, fg="lightgreen", font=("Arial", 12))
-historyTextLabel.grid(row=3, column= 0)
+historyTextLabel.grid(row=3, column=0)
 
 historyOptions = StringVar()
 history = OptionMenu(root, historyOptions, 'No', 'Yes')
 historyOptions.set("select")
 history.grid(row=4, column=0, padx=5, pady=5)
 
-
+# Diabetes
 diabetesText = StringVar()
 diabetesText.set("Diabetic")
 diabetesTextLabel = Label(textvariable=diabetesText, fg="lightgreen", font=("Arial", 12))
-diabetesTextLabel.grid(row=3, column= 1)
+diabetesTextLabel.grid(row=3, column=1)
 
 diabetesOptions = StringVar()
 diabetes = OptionMenu(root, diabetesOptions, 'No', 'Yes')
 diabetesOptions.set("select")
 diabetes.grid(row=4, column=1, padx=5, pady=5)
 
-
+# Memory Issues
 memoryText = StringVar()
 memoryText.set("Memory Issues")
 memoryTextLabel = Label(textvariable=memoryText, fg="lightgreen", font=("Arial", 12))
-memoryTextLabel.grid(row=3, column= 2)
+memoryTextLabel.grid(row=3, column=2)
 
 memoryOptions = StringVar()
 memory = OptionMenu(root, memoryOptions, 'No', 'Yes')
 memoryOptions.set("select")
 memory.grid(row=4, column=2, padx=5, pady=5)
 
-
+# Head Injury
 hiText = StringVar()
 hiText.set("Head Injury(s)")
 hiTextLabel = Label(textvariable=hiText, fg="lightgreen", font=("Arial", 12))
-hiTextLabel.grid(row=5, column= 0)
+hiTextLabel.grid(row=5, column=0)
 
 headInjuryOptions = StringVar()
 headInjury = OptionMenu(root, headInjuryOptions, 'No', 'Yes')
 headInjuryOptions.set("select")
 headInjury.grid(row=6, column=0, padx=5, pady=5)
 
-
+# Forgetfulness
 forgetfulText = StringVar()
 forgetfulText.set("Forgetful")
 forgetfulTextLabel = Label(textvariable=forgetfulText, fg="lightgreen", font=("Arial", 12))
-forgetfulTextLabel.grid(row=5, column= 1)
+forgetfulTextLabel.grid(row=5, column=1)
 
 forgetfulnessOptions = StringVar()
 forgetfulness = OptionMenu(root, forgetfulnessOptions, 'No', 'Yes')
 forgetfulnessOptions.set("select")
 forgetfulness.grid(row=6, column=1, padx=5, pady=5)
 
-
+# Behavioral Problems
 behaveText = StringVar()
 behaveText.set("Behavior Problems")
 behaveTextLabel = Label(textvariable=behaveText, fg="lightgreen", font=("Arial", 12))
@@ -148,33 +167,34 @@ behavioralProblems = OptionMenu(root, behaviorOptions, 'No', 'Yes')
 behaviorOptions.set("select")
 behavioralProblems.grid(row=6, column=2, padx=5, pady=5)
 
-
+# ADL Score
 adlLabelText = StringVar()
 adlLabelText.set("ADL Score")
 adlLabel = Label(textvariable=adlLabelText, font=("Arial", 12), fg="lightgreen")
 adlLabel.grid(row=7, column=0)
 
-adlText = Entry(root, validate='key', validatecommand=vcmd)
+adlText = Entry(root, validate='key', validatecommand=vcmd_adl)
 adlText.grid(row=8, column=0, padx=5, pady=5)
 
-
+# MMSE Score
 mmseLabelText = StringVar()
 mmseLabelText.set("MMSE Score")
 mmseLabel = Label(textvariable=mmseLabelText, font=("Arial", 12), fg="lightgreen")
 mmseLabel.grid(row=7, column=1)
 
-mmseText = Entry(root, validate='key', validatecommand=vcmd)
+mmseText = Entry(root, validate='key', validatecommand=vcmd_mmse)
 mmseText.grid(row=8, column=1)
 
-
+# Functional Assessment Score
 faLabelText = StringVar()
 faLabelText.set("Functional Assessment Score")
 faLabel = Label(textvariable=faLabelText, font=("Arial", 12), fg="lightgreen")
 faLabel.grid(row=7, column=2)
 
-functionalAssessmentText = Entry(root, validate='key', validatecommand=vcmd)
+functionalAssessmentText = Entry(root, validate='key', validatecommand=vcmd_adl)
 functionalAssessmentText.grid(row=8, column=2)
 
+# Buttons
 submissionButton = Button(root, text="Process Prediction", command=process_prediction, bg="white", activebackground="white")
 submissionButton.grid(row=9, column=1)
 
@@ -182,4 +202,3 @@ helpButton = Button(root, text="Help", command=open_help_window)
 helpButton.grid(row=11, column=2)
 
 root.mainloop()
-
