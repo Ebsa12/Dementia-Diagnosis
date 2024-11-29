@@ -3,6 +3,7 @@ import tkinter.ttk
 from ttkthemes import ThemedStyle
 import pandas as pd
 import subprocess
+import Test_Result
 from HelpScreen import open_help_window
 
 def validate_float(P):
@@ -33,7 +34,7 @@ def validate_mmse(P):
         return False
 
 def launchResults():
-    subprocess.Popen(['python3', 'Test_Result.py'])
+    subprocess.Popen(['python3', './Test_Result.py'])
     root.destroy()
     
 def process_prediction():
