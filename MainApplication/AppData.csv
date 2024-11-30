@@ -1,2 +1,2 @@
 Gender,Ethnicity,Smoking,FamilyHistoryAlzheimers,Diabetes,MemoryComplaints,HeadInjury,Forgetfulness,BehavioralProblems,ADL,MMSE,FunctionalAssessment
-Female,White,Yes,Yes,No,Yes,No,Yes,Yes,10,30,10
+select,select,select,select,select,select,select,select,select,,,

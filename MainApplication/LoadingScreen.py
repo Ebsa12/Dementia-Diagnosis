@@ -3,7 +3,6 @@ import tkinter.ttk
 from ttkthemes import ThemedStyle
 import pandas as pd
 import subprocess
-import Test_Result
 from HelpScreen import open_help_window
 
 def validate_float(P):
