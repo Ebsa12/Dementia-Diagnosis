@@ -13,5 +13,4 @@
     pip install -r requirements.txt
 
 3. **Run the application in terminal or command prompt**
-    cd dist
-    ./loadingscreen.exe
+    ./dist/loadingscreen
