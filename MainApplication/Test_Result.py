@@ -2,19 +2,20 @@ from tkinter import *
 from tkinter import messagebox
 from APIConnection import PosDiagnosis
 import subprocess
-import APIConnection
-
 
 # Function to close the application and redirect to home
-def go_home():
+def go_home(root):
     messagebox.showinfo("Home", "Returning to the Home Page.")
     subprocess.Popen(['python3', 'LoadingScreen.py'])
     root.destroy()
 
-if __name__ == "__main__":
+def load_API():
+    import APIConnection
 
+def create_gui():
     # Create the result application window
     root = Tk()
+    load_API()
     root.title("Results Page")
 
     # Set the window size
@@ -53,8 +54,11 @@ if __name__ == "__main__":
     disclaimer_label.pack(pady=10)
 
     # Create and pack the "Home" button
-    home_button = Button(root, text="Home", font=("Arial", 12), fg="#4CAF50", command=go_home)
+    home_button = Button(root, text="Close", font=("Arial", 12), fg="#4CAF50", command=lambda: go_home(root))
     home_button.pack(pady=20)
 
     # Start the Tkinter event loop
     root.mainloop()
+
+if __name__ == "__main__":
+    create_gui()
