@@ -1,5 +1,6 @@
 import tkinter as tk
 import tkinter.scrolledtext as scrolledtext
+import os
 
 def open_help_window():
     new_window = tk.Toplevel()
@@ -7,7 +8,8 @@ def open_help_window():
     new_window.title("Help")
 
     def open_help_doc():
-        file_path = "HelpDoc.txt"
+        base_path = os.path.dirname(os.path.abspath(__file__))
+        file_path = os.path.join(base_path, 'HelpDoc.txt')
         try:
             with open(file_path, "r") as file:
                 text_area.delete("1.0", tk.END)
