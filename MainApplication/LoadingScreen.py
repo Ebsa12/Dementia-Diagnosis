@@ -2,8 +2,9 @@ from tkinter import *
 import tkinter.ttk
 from ttkthemes import ThemedStyle
 import pandas as pd
-import subprocess
+import os
 from HelpScreen import open_help_window
+from Test_Result import create_gui
 
 def validate_float(P):
     if P == "":
@@ -31,12 +32,10 @@ def validate_mmse(P):
         return 0 <= value <= 30
     except ValueError:
         return False
-
-def launchResults():
-    subprocess.Popen(['python3', './Test_Result.py'])
-    root.destroy()
     
 def process_prediction():
+    base_path = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(base_path, 'AppData.csv')
     data = {
         'Gender': [genderOptions.get()],
         'Ethnicity': [ethnicityOptions.get()],
@@ -52,9 +51,10 @@ def process_prediction():
         'FunctionalAssessment': [functionalAssessmentText.get()]
     }
     df = pd.DataFrame(data)
-    df.to_csv('AppData.csv', index=False)
+    df.to_csv(file_path, index=False)
     print('data added to dataframe')
-    launchResults()
+    root.destroy()
+    create_gui()
 
 root = Tk()
 root.geometry("700x500")
