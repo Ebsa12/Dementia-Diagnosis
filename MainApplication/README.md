@@ -2,15 +2,12 @@
 
 ## Setup Instructions
 
-1. **Create a Virtual Environment**
-    download project folder
-        launch terminal  # On windows  launch cmd
-        access project folder cd 'path to folder'
-    python -m venv venv
-    source venv/bin/activate #On windows venv/Scripts/activate
-
-2. **Install required dependencies**
-    pip install -r requirements.txt
-
-3. **Run the application in terminal or command prompt**
-    ./dist/loadingscreen
+1. **Download project**
+    unzip the zip file
+2. **launch on MacOS**
+    Open the dist folder
+    Double click the exe file
+3. **launch on WindowsOS**
+    Open the dist folder
+    Double click the application folder
+    
