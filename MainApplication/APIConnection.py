@@ -60,6 +60,13 @@ headInjury = Appdata.reset_index().loc[0,'HeadInjury']
 memoryComplaints = Appdata.reset_index().loc[0,'MemoryComplaints']
 forgetfulness = Appdata.reset_index().loc[0,'Forgetfulness']
 
+# Work with the error of highest score for text fields
+if mmse == 30:
+    mmse = 29
+if adl == 10:
+    adl = 9
+if functionalAssessment == 10:
+    functionalAssessment = 9
 
 #requestURL
 url = "https://api.akkio.com/api"
@@ -68,13 +75,13 @@ api_key = 'b91100c5-a3a6-404c-a92c-ec10a1fc6938'
 data = f'''
     [{{
         "Gender":"{gender}",
-        "FunctionalAssessment":"{functionalAssessment}",
+        "FunctionalAssessment":{functionalAssessment},
         "FamilyHistoryAlzheimers":"{familyHistoryAlzheimers}",
-        "MMSE":"{mmse}",
+        "MMSE":{mmse},
         "BehavioralProblems":"{behavioralProblems}",
         "Ethnicity":"{ethnicity}",
         "Diabetes":"{diabetes}",
-        "ADL":"{adl}",
+        "ADL":{adl},
         "Smoking":"{smoking}",
         "HeadInjury":"{headInjury}",
         "MemoryComplaints":"{memoryComplaints}",
@@ -91,6 +98,7 @@ params = {
     'deploy-transforms-only': deploy_transforms_only
 }
 response = requests.get(url, params=params)
+# print(response.json())
 PosDiagnosis = response.json()[0]['Probability Diagnosis is Yes'] * 100
 NegDiagnosis = response.json()[0]['Probability Diagnosis is No'] * 100
 
